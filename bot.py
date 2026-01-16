@@ -1,7 +1,7 @@
 import telebot, os
 import generator, board
 
-TOKEN = '8105513601:AAFGXNLlc83ZsZ5gEVcHfckinGxXxr2Ak1U'
+TOKEN = 'INSERT_TOKEN_HERE'
 bot = telebot.TeleBot(TOKEN)
 
 chats = {}
@@ -18,7 +18,16 @@ def default(message):
 # Хендлер для команды /start
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.reply_to(message, "Привет! Я бот. Напиши /help, чтобы узнать, что я умею.")
+    bot.reply_to(message, "Привет! Я бот. Напиши /help, чтобы узнать, что я умею, или /info, чтобы узнать обо мне побольше.")
+    default(message)
+
+@bot.message_handler(commands=['info'])
+def send_welcome(message):
+    info = """Привет! Я бот, который был создан для задания на онлайн курсе Kodland.
+    Моя задумка была в преобразовании текста различными шрифтами.
+    
+    Этого бота было интересно создавать, придумывая структуру проекта."""
+    bot.reply_to(message, info)
     default(message)
 
 # Хендлер для команды /help
